@@ -53,7 +53,7 @@ A comprehensive Voice Virtual Assistant with authentication, weather, navigation
    Create a `.env` file in the `server` directory:
    ```env
    # MongoDB Configuration
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
+   MONGODB_URI=your_mongodb_connection_string_here
    
    # JWT Secret
    JWT_SECRET=your_jwt_secret_key_here
@@ -111,7 +111,7 @@ voice-virtual-assistant/
 ### MongoDB Setup
 1. Create a MongoDB Atlas account
 2. Create a new cluster
-3. Get your connection string (replace username, password, cluster, and database with your actual values)
+3. Get your connection string (format: `mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority`)
 4. Update the `MONGODB_URI` in your `.env` file
 
 ### Email Configuration (for password reset)
