@@ -8,7 +8,6 @@ import Chat from './Chat';
 import Translation from './Translation';
 import VoiceAssistant from './VoiceAssistant';
 import VoiceSettings from './VoiceSettings';
-import VoiceTest from './VoiceTest';
 import AirQuality from './AirQuality';
 import ChanceOfRain from './ChanceOfRain';
 
@@ -157,7 +156,6 @@ const Dashboard = () => {
       {renderSection()}
 
       <VoiceAssistant />
-      <VoiceTest />
     </div>
   );
 };
