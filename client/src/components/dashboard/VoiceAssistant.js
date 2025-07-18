@@ -26,7 +26,7 @@ const VoiceAssistant = () => {
     } else {
       clearTranscript();
       startListening();
-      speak("Voice assistant activated. How can I help you?");
+      speak("Voice assistant activated. How can I help you?", { voiceName: 'Samantha' });
     }
   };
 
@@ -35,61 +35,61 @@ const VoiceAssistant = () => {
     
     // Navigation commands
     if (lowerCommand.includes('weather') || lowerCommand.includes('check weather')) {
-      speak("Opening weather section");
+      speak("Opening weather section", { voiceName: 'Samantha' });
       // You could add navigation logic here
       return;
     }
     
     if (lowerCommand.includes('navigate') || lowerCommand.includes('directions') || lowerCommand.includes('maps')) {
-      speak("Opening navigation section");
+      speak("Opening navigation section", { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('chat') || lowerCommand.includes('conversation')) {
-      speak("Opening chat assistant");
+      speak("Opening chat assistant", { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('translate') || lowerCommand.includes('translation')) {
-      speak("Opening translation section");
+      speak("Opening translation section", { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('dashboard') || lowerCommand.includes('home')) {
-      speak("Going to dashboard");
+      speak("Going to dashboard", { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('logout') || lowerCommand.includes('sign out')) {
-      speak("Logging you out");
+      speak("Logging you out", { voiceName: 'Samantha' });
       // You could add logout logic here
       return;
     }
     
     if (lowerCommand.includes('time')) {
       const time = new Date().toLocaleTimeString();
-      speak(`The current time is ${time}`);
+      speak(`The current time is ${time}`, { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('date')) {
       const date = new Date().toLocaleDateString();
-      speak(`Today is ${date}`);
+      speak(`Today is ${date}`, { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('hello') || lowerCommand.includes('hi')) {
-      speak("Hello! I'm your voice assistant. How can I help you today?");
+      speak("Hello! I'm your voice assistant. How can I help you today?", { voiceName: 'Samantha' });
       return;
     }
     
     if (lowerCommand.includes('help')) {
-      speak("I can help you with weather, navigation, chat, translation, and more. Just say what you need!");
+      speak("I can help you with weather, navigation, chat, translation, and more. Just say what you need!", { voiceName: 'Samantha' });
       return;
     }
     
     // Default response
-    speak("I heard you say: " + command + ". How can I assist you with that?");
+    speak("I heard you say: " + command + ". How can I assist you with that?", { voiceName: 'Samantha' });
   };
 
   useEffect(() => {

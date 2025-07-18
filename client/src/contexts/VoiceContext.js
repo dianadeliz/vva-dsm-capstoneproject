@@ -128,45 +128,77 @@ export const VoiceProvider = ({ children }) => {
 
       let selectedVoice = null;
       
-      // If user has a preferred voice, use it
-      const preferredVoiceName = getPreferredVoice();
-      if (preferredVoiceName) {
-        selectedVoice = voices.find(v => v.name === preferredVoiceName);
-      }
-      
-      // If a specific voice is requested, use it
+      // If a specific voice is requested, use it (highest priority)
       if (options.voiceName) {
         selectedVoice = voices.find(v => v.name === options.voiceName);
       }
       
-      // If no voice selected yet, find the best available
-      if (!selectedVoice) {
-        // Simple approach: find the first good English voice
+      // For translation (when lang is not English), find the best voice for that language
+      else if (options.lang && !options.lang.startsWith('en')) {
+        // Find the best voice for the target language
         selectedVoice = voices.find(v => 
-          v.lang.startsWith('en') && 
+          v.lang === options.lang && 
           v.localService && 
-          !v.name.includes('Daniel') && // Avoid robotic voices
-          !v.name.includes('Samantha') // Avoid high-pitched voices
+          !v.name.includes('Daniel') && 
+          !v.name.includes('Samantha')
         );
         
-        // If no local service, try any English voice
         if (!selectedVoice) {
           selectedVoice = voices.find(v => 
-            v.lang.startsWith('en') && 
+            v.lang === options.lang && 
             !v.name.includes('Daniel') && 
             !v.name.includes('Samantha')
           );
         }
         
-        // Last resort: any English voice
         if (!selectedVoice) {
-          selectedVoice = voices.find(v => v.lang.startsWith('en'));
+          selectedVoice = voices.find(v => v.lang === options.lang);
         }
         
-        // If still no voice, use the first available
-        if (!selectedVoice && voices.length > 0) {
-          selectedVoice = voices[0];
+        if (!selectedVoice) {
+          // Fallback to base language
+          const baseLang = options.lang.split('-')[0];
+          selectedVoice = voices.find(v => v.lang.startsWith(baseLang));
         }
+      }
+      
+      // For main assistant (English), always try to use Samantha first
+      else {
+        // First, try to find Samantha
+        selectedVoice = voices.find(v => v.name === 'Samantha');
+        
+        // If Samantha not found, try user's preferred voice
+        if (!selectedVoice) {
+          const preferredVoiceName = getPreferredVoice();
+          if (preferredVoiceName) {
+            selectedVoice = voices.find(v => v.name === preferredVoiceName);
+          }
+        }
+        
+        // If still no voice, find the best available English voice
+        if (!selectedVoice) {
+          selectedVoice = voices.find(v => 
+            v.lang.startsWith('en') && 
+            v.localService && 
+            !v.name.includes('Daniel')
+          );
+          
+          if (!selectedVoice) {
+            selectedVoice = voices.find(v => 
+              v.lang.startsWith('en') && 
+              !v.name.includes('Daniel')
+            );
+          }
+          
+          if (!selectedVoice) {
+            selectedVoice = voices.find(v => v.lang.startsWith('en'));
+          }
+        }
+      }
+      
+      // If still no voice, use the first available
+      if (!selectedVoice && voices.length > 0) {
+        selectedVoice = voices[0];
       }
 
       // Set the voice

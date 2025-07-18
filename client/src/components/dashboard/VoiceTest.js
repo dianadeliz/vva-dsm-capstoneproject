@@ -75,7 +75,7 @@ const VoiceTest = () => {
           boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
           zIndex: 1000
         }}
-        title="Test Voices"
+        title="Voice Settings"
       >
         <FiVolume2 size={20} />
       </button>
@@ -98,7 +98,7 @@ const VoiceTest = () => {
       overflowY: 'auto'
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-        <h3 style={{ margin: 0, fontSize: '16px' }}>Voice Test</h3>
+        <h3 style={{ margin: 0, fontSize: '16px' }}>Voice Settings</h3>
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
             onClick={() => {
@@ -132,9 +132,12 @@ const VoiceTest = () => {
         </div>
       </div>
 
-      <p style={{ margin: '0 0 12px 0', fontSize: '14px', color: '#666' }}>
-        Click a voice to test it, then select the one you prefer:
-      </p>
+      <div style={{ marginBottom: '12px', padding: '8px', background: '#f0f8ff', borderRadius: '4px', fontSize: '12px' }}>
+        <strong>Voice Configuration:</strong><br/>
+        • <strong>Samantha</strong> will be used for the main voice assistant<br/>
+        • <strong>Best available voice</strong> will be used for translations<br/>
+        • You can test voices below to hear how they sound
+      </div>
 
       <div style={{ marginBottom: '12px' }}>
         {voices.map((voice, index) => {
