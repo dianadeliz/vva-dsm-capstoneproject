@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 import Chat from './Chat';
 import Translation from './Translation';
 import VoiceAssistant from './VoiceAssistant';
+import VoiceSettings from './VoiceSettings';
 import AirQuality from './AirQuality';
 import ChanceOfRain from './ChanceOfRain';
 
@@ -120,6 +121,7 @@ const Dashboard = () => {
           </p>
         </div>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <VoiceSettings />
           <button
             onClick={handleVoiceCommand}
             className="btn btn-secondary"

@@ -67,6 +67,22 @@ export const VoiceProvider = ({ children }) => {
     } else {
       toast.error('Speech recognition not supported in this browser');
     }
+
+    // Initialize speech synthesis voices
+    if ('speechSynthesis' in window) {
+      // Load voices when they become available
+      const loadVoices = () => {
+        const voices = window.speechSynthesis.getVoices();
+        console.log('Available voices:', voices.map(v => v.name));
+      };
+
+      // Some browsers load voices asynchronously
+      if (window.speechSynthesis.getVoices().length > 0) {
+        loadVoices();
+      } else {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+    }
   }, []);
 
   // Start listening
@@ -109,26 +125,62 @@ export const VoiceProvider = ({ children }) => {
       utterance.volume = options.volume || 1;
 
       let bestVoice = null;
-      // If a specific voiceName is provided, use it
+      
+      // First, check if user has a preferred voice set
+      const preferredVoiceName = getPreferredVoice();
+      if (preferredVoiceName) {
+        bestVoice = voices.find(v => v.name === preferredVoiceName);
+      }
+      
+      // If a specific voiceName is provided, use it (overrides preference)
       if (options.voiceName) {
         bestVoice = voices.find(v => v.name === options.voiceName);
       }
-      // Otherwise, use the language-based selection as before
+      
+      // Otherwise, prioritize modern, natural-sounding voices
       if (!bestVoice) {
-        bestVoice = voices.find(v => v.lang === lang && (v.localService || v.default));
-        if (!bestVoice) {
-          bestVoice = voices.find(v => v.lang === lang && (v.name.includes('Google') || v.name.includes('Microsoft')));
-        }
-        if (!bestVoice) {
-          bestVoice = voices.find(v => v.lang === lang);
-        }
-        if (!bestVoice) {
-          const baseLang = lang.split('-')[0];
-          bestVoice = voices.find(v => v.lang.startsWith(baseLang));
-        }
+        // First, try to find a modern Google voice
+        bestVoice = voices.find(v => 
+          v.lang === lang && 
+          (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Enhanced'))
+        );
       }
+      
+      if (!bestVoice) {
+        // Then try Microsoft voices
+        bestVoice = voices.find(v => 
+          v.lang === lang && 
+          (v.name.includes('Microsoft') || v.name.includes('David') || v.name.includes('Zira'))
+        );
+      }
+      
+      if (!bestVoice) {
+        // Then try any local service voice
+        bestVoice = voices.find(v => v.lang === lang && v.localService);
+      }
+      
+      if (!bestVoice) {
+        // Then try default voice for the language
+        bestVoice = voices.find(v => v.lang === lang && v.default);
+      }
+      
+      if (!bestVoice) {
+        // Then any voice for the language
+        bestVoice = voices.find(v => v.lang === lang);
+      }
+      
+      if (!bestVoice) {
+        // Finally, try any voice with the base language
+        const baseLang = lang.split('-')[0];
+        bestVoice = voices.find(v => v.lang.startsWith(baseLang));
+      }
+      
+      // Set the voice if found
       if (bestVoice) {
         utterance.voice = bestVoice;
+        console.log('Using voice:', bestVoice.name);
+      } else {
+        console.log('No suitable voice found, using default');
       }
 
       utterance.onstart = () => setIsSpeaking(true);
@@ -170,6 +222,39 @@ export const VoiceProvider = ({ children }) => {
     return null;
   };
 
+  // Get available voices with better formatting
+  const getAvailableVoices = () => {
+    if ('speechSynthesis' in window) {
+      const voices = window.speechSynthesis.getVoices();
+      return voices.map(voice => ({
+        name: voice.name,
+        lang: voice.lang,
+        localService: voice.localService,
+        default: voice.default
+      }));
+    }
+    return [];
+  };
+
+  // Set preferred voice by name
+  const setPreferredVoice = (voiceName) => {
+    if ('speechSynthesis' in window) {
+      const voices = window.speechSynthesis.getVoices();
+      const voice = voices.find(v => v.name === voiceName);
+      if (voice) {
+        // Store preference in localStorage
+        localStorage.setItem('preferredVoice', voiceName);
+        return voice;
+      }
+    }
+    return null;
+  };
+
+  // Get preferred voice from localStorage
+  const getPreferredVoice = () => {
+    return localStorage.getItem('preferredVoice');
+  };
+
   const value = {
     isListening,
     transcript,
@@ -180,7 +265,10 @@ export const VoiceProvider = ({ children }) => {
     speak,
     stopSpeaking,
     getVoices,
-    setVoice
+    setVoice,
+    getAvailableVoices,
+    setPreferredVoice,
+    getPreferredVoice
   };
 
   return (
