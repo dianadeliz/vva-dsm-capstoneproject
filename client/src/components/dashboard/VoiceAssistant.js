@@ -79,17 +79,17 @@ const VoiceAssistant = () => {
     }
     
     if (lowerCommand.includes('hello') || lowerCommand.includes('hi')) {
-      speak("Hello! I'm your voice assistant. How can I help you today?", { voiceName: 'Samantha' });
+      // No response for simple greetings
       return;
     }
     
     if (lowerCommand.includes('help')) {
-      speak("I can help you with weather, navigation, chat, translation, and more. Just say what you need!", { voiceName: 'Samantha' });
+      // No response for help command
       return;
     }
     
-    // Default response
-    speak("I heard you say: " + command + ". How can I assist you with that?", { voiceName: 'Samantha' });
+    // No default response for unrecognized commands
+    return;
   };
 
   useEffect(() => {
