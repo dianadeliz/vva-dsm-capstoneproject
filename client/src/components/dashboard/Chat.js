@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useVoice } from '../../contexts/VoiceContext';
 import { useAuth } from '../../contexts/AuthContext';
-import { FiSend, FiMic, FiMicOff, FiVolume2, FiVolumeX, FiCopy } from 'react-icons/fi';
+import { FiSend, FiMic, FiMicOff, FiVolume2, FiVolumeX, FiCopy, FiPlay, FiPause } from 'react-icons/fi';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -14,6 +14,7 @@ const Chat = () => {
   const [sessionId] = useState(`session_${Date.now()}`);
   const messagesEndRef = useRef(null);
   const [sending, setSending] = useState(false);
+  const [speakingMessageIndex, setSpeakingMessageIndex] = useState(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -22,6 +23,17 @@ const Chat = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const handleSpeechEnded = () => {
+      setSpeakingMessageIndex(null);
+    };
+
+    window.addEventListener('speechEnded', handleSpeechEnded);
+    return () => {
+      window.removeEventListener('speechEnded', handleSpeechEnded);
+    };
+  }, []);
 
   useEffect(() => {
     if (transcript && !isListening) {
@@ -123,6 +135,32 @@ const Chat = () => {
     toast.success('Copied to clipboard!');
   };
 
+  const handleSpeakMessage = (message, index) => {
+    if (speakingMessageIndex === index) {
+      // If this message is already speaking, stop it
+      stopSpeaking();
+      setSpeakingMessageIndex(null);
+    } else {
+      // Stop any currently speaking message
+      stopSpeaking();
+      // Start speaking this message
+      speak(message, { voiceName: preferredVoiceName });
+      setSpeakingMessageIndex(index);
+    }
+  };
+
+  const handlePlayPause = (message, index) => {
+    if (speakingMessageIndex === index) {
+      // Currently speaking this message - pause/stop
+      stopSpeaking();
+      setSpeakingMessageIndex(null);
+    } else {
+      // Start speaking this message
+      speak(message, { voiceName: preferredVoiceName });
+      setSpeakingMessageIndex(index);
+    }
+  };
+
   // Replace 'Google US English' with your actual preferred voice name
   const preferredVoiceName = 'Samantha';
 
@@ -177,19 +215,26 @@ const Chat = () => {
                 {message.role === 'assistant' && (
                   <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
                     <button
-                      onClick={() => speak(message.content, { voiceName: preferredVoiceName })}
+                      onClick={() => handleSpeakMessage(message.content, index)}
                       className="btn btn-secondary"
-                      title="Read Out Loud"
+                      title="Speak Out Loud"
+                      style={{
+                        background: speakingMessageIndex === index ? '#4caf50' : undefined,
+                        color: speakingMessageIndex === index ? 'white' : undefined
+                      }}
                     >
                       <FiVolume2 />
                     </button>
                     <button
-                      onClick={stopSpeaking}
+                      onClick={() => handlePlayPause(message.content, index)}
                       className="btn btn-secondary"
-                      title="Pause Listening"
-                      disabled={!isSpeaking}
+                      title={speakingMessageIndex === index ? "Pause" : "Play"}
+                      style={{
+                        background: speakingMessageIndex === index ? '#ff9800' : undefined,
+                        color: speakingMessageIndex === index ? 'white' : undefined
+                      }}
                     >
-                      <FiVolumeX />
+                      {speakingMessageIndex === index ? <FiPause /> : <FiPlay />}
                     </button>
                     <button
                       onClick={() => handleCopy(message.content)}
@@ -263,21 +308,6 @@ const Chat = () => {
             title={isListening ? 'Stop voice input' : 'Start voice input'}
           >
             {isListening ? <FiMicOff /> : <FiMic />}
-          </button>
-          <button
-            onClick={isSpeaking ? stopSpeaking : () => speak(messages[messages.length - 1]?.content || '', { voiceName: preferredVoiceName })}
-            className="btn btn-secondary"
-            disabled={loading || sending || messages.length === 0}
-            style={{
-              padding: '12px',
-              minWidth: '48px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-            title={isSpeaking ? 'Stop reading' : 'Read last message out loud'}
-          >
-            {isSpeaking ? <FiVolumeX /> : <FiVolume2 />}
           </button>
           <button
             onClick={() => {

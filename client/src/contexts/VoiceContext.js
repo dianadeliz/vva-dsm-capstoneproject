@@ -218,6 +218,8 @@ export const VoiceProvider = ({ children }) => {
       utterance.onend = () => {
         setIsSpeaking(false);
         console.log('Speech ended');
+        // Trigger a custom event for components to listen to
+        window.dispatchEvent(new CustomEvent('speechEnded'));
       };
       
       utterance.onerror = (event) => {
