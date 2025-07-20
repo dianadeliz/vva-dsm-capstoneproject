@@ -130,6 +130,12 @@ voice-virtual-assistant/
 2. Create an account and get your API key
 3. Add the API key to your `.env` file
 
+### Weather API (for real weather data)
+1. Go to [OpenWeatherMap](https://openweathermap.org/api)
+2. Sign up for a free account
+3. Get your API key
+4. Add the API key to your `.env` file
+
 ## 🎯 Usage
 
 ### Registration & Login

@@ -8,6 +8,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const translationRoutes = require('./routes/translation');
+const weatherRoutes = require('./routes/weather');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -47,6 +48,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/translation', translationRoutes);
 app.use('/api/chat', require('./routes/chat'));
+app.use('/api/weather', weatherRoutes);
 
 
 // Health check endpoint
