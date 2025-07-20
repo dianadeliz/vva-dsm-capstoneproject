@@ -35,12 +35,16 @@ const Chat = () => {
 
   const handleSendMessage = async (message) => {
     if (sending) return;
-    setSending(true);
+    
+    // Get the message to send
     const msg = message !== undefined ? message : inputMessage;
+    
+    // Validate the message
     if (typeof msg !== 'string' || !msg.trim()) {
-      setSending(false);
       return;
     }
+    
+    setSending(true);
 
     const userMessage = {
       role: 'user',
@@ -53,8 +57,12 @@ const Chat = () => {
     setLoading(true);
 
     try {
+      console.log('Sending message to AI:', msg);
+      
       // Call backend AI route for assistant response
       const aiRes = await axios.post('/api/chat/ai', { message: msg });
+      console.log('AI response received:', aiRes.data);
+      
       const aiResponse = aiRes.data.aiResponse;
 
       const assistantMessage = {
@@ -66,15 +74,28 @@ const Chat = () => {
       setMessages(prev => [...prev, assistantMessage]);
 
       // Save to database
-      await axios.post('/api/user/chat', {
-        message: msg,
-        response: aiResponse,
-        sessionId
-      });
+      try {
+        await axios.post('/api/user/chat', {
+          message: msg,
+          response: aiResponse,
+          sessionId
+        });
+      } catch (dbError) {
+        console.error('Database save error:', dbError);
+        // Don't show error to user for database save failures
+      }
 
     } catch (error) {
       console.error('Chat error:', error);
-      toast.error('Failed to get AI response');
+      console.error('Error response:', error.response?.data);
+      
+      if (error.response?.status === 401) {
+        toast.error('Please log in again');
+      } else if (error.response?.status === 500) {
+        toast.error('AI service error. Please try again.');
+      } else {
+        toast.error('Failed to get AI response. Please check your connection.');
+      }
     } finally {
       setLoading(false);
       setSending(false);
@@ -86,7 +107,7 @@ const Chat = () => {
       stopListening();
     } else {
       clearTranscript();
-      startListening();
+      startListening('translation'); // Use translation source to avoid AI responses
     }
   };
 
@@ -259,7 +280,10 @@ const Chat = () => {
             {isSpeaking ? <FiVolumeX /> : <FiVolume2 />}
           </button>
           <button
-            onClick={handleSendMessage}
+            onClick={() => {
+              console.log('Send button clicked, inputMessage:', inputMessage);
+              handleSendMessage();
+            }}
             className="btn btn-primary"
             disabled={loading || sending || !inputMessage.trim()}
             style={{
