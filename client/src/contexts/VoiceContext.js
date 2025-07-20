@@ -8,6 +8,7 @@ export const VoiceProvider = ({ children }) => {
   const [transcript, setTranscript] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [recognition, setRecognition] = useState(null);
+  const [voiceSource, setVoiceSource] = useState(null); // 'assistant' or 'translation'
 
   useEffect(() => {
     // Initialize speech recognition
@@ -86,9 +87,10 @@ export const VoiceProvider = ({ children }) => {
   }, []);
 
   // Start listening
-  const startListening = () => {
+  const startListening = (source = 'assistant') => {
     if (recognition) {
       try {
+        setVoiceSource(source);
         recognition.start();
       } catch (error) {
         console.error('Error starting recognition:', error);
@@ -304,6 +306,7 @@ export const VoiceProvider = ({ children }) => {
     isListening,
     transcript,
     isSpeaking,
+    voiceSource,
     startListening,
     stopListening,
     clearTranscript,

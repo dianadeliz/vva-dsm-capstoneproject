@@ -25,7 +25,7 @@ const Dashboard = () => {
       stopListening();
     } else {
       clearTranscript();
-      startListening();
+      startListening('assistant');
     }
   };
 

@@ -3,7 +3,7 @@ import { useVoice } from '../../contexts/VoiceContext';
 import { FiMic, FiMicOff } from 'react-icons/fi';
 
 const VoiceAssistant = () => {
-  const { isListening, startListening, stopListening, transcript, clearTranscript, speak } = useVoice();
+  const { isListening, startListening, stopListening, transcript, clearTranscript, speak, voiceSource } = useVoice();
   const [showTranscript, setShowTranscript] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const VoiceAssistant = () => {
       setShowTranscript(false);
     } else {
       clearTranscript();
-      startListening();
+      startListening('assistant');
       speak("Voice assistant activated. How can I help you?", { voiceName: 'Samantha' });
     }
   };
@@ -93,10 +93,10 @@ const VoiceAssistant = () => {
   };
 
   useEffect(() => {
-    if (transcript && !isListening) {
+    if (transcript && !isListening && voiceSource === 'assistant') {
       processVoiceCommand(transcript);
     }
-  }, [transcript, isListening]);
+  }, [transcript, isListening, voiceSource]);
 
   return null;
 };

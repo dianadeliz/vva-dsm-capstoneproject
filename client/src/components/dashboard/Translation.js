@@ -76,7 +76,7 @@ const Translation = () => {
       stopListening();
     } else {
       clearTranscript();
-      startListening();
+      startListening('translation');
     }
   };
 
