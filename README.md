@@ -1,6 +1,12 @@
 # Voice Virtual Assistant
 
+[![Tests](https://img.shields.io/badge/tests-70%2B%20passing-brightgreen)](https://github.com/dianadeliz/vva-dsm-capstoneproject)
+[![Coverage](https://img.shields.io/badge/coverage-80%25%2B-brightgreen)](https://github.com/dianadeliz/vva-dsm-capstoneproject)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A comprehensive Voice Virtual Assistant with authentication, weather, navigation, chat, and translation features. Built with React, Node.js, and MongoDB.
+
+**Features comprehensive unit testing with 70+ tests covering both server and client components.**
 
 ## 🌟 Features
 
@@ -86,6 +92,80 @@ A comprehensive Voice Virtual Assistant with authentication, weather, navigation
 
    This will start both the backend server (port 5000) and frontend (port 3000).
 
+## 🧪 Testing
+
+This project includes comprehensive unit tests for both server and client components.
+
+### Running Tests
+
+#### All Tests
+```bash
+# Run all tests with coverage
+./run-tests.sh
+
+# Or run tests individually
+npm run test:server    # Server tests only
+npm run test:client    # Client tests only
+```
+
+#### Individual Test Suites
+```bash
+# Server tests
+cd server
+npm test                    # Run all server tests
+npm test -- --watch        # Watch mode
+npm test -- --coverage     # With coverage report
+
+# Client tests
+cd client
+npm test                    # Run all client tests
+npm test -- --watch        # Watch mode
+npm test -- --coverage     # With coverage report
+```
+
+#### Specific Test Files
+```bash
+# Server
+npm test -- --testPathPattern="auth.test.js"
+npm test -- --testPathPattern="User.test.js"
+
+# Client
+npm test -- --testPathPattern="Login.test.js"
+npm test -- --testPathPattern="AuthContext.test.js"
+```
+
+### Test Coverage
+
+The project includes:
+- **Server Tests**: 53 tests covering models, routes, and middleware
+- **Client Tests**: Login component, AuthContext, weather service, and App tests
+- **Test Utilities**: Mock setup, test helpers, and configuration files
+
+### Test Structure
+
+```
+├── server/tests/
+│   ├── models/           # Database model tests
+│   ├── routes/           # API endpoint tests
+│   ├── middleware/       # Authentication middleware tests
+│   ├── utils/            # Test utilities
+│   └── setup.js          # Test configuration
+├── client/src/
+│   ├── __tests__/        # App-level tests
+│   ├── components/auth/__tests__/  # Authentication component tests
+│   ├── contexts/__tests__/         # Context tests
+│   ├── services/__tests__/         # Service layer tests
+│   └── setupTests.js     # Client test configuration
+└── TESTING_GUIDE.md      # Detailed testing documentation
+```
+
+### Testing Technologies
+
+- **Server**: Jest, Supertest, mongodb-memory-server
+- **Client**: Jest, React Testing Library, user-event
+- **Coverage**: Built-in Jest coverage reporting
+- **Mocks**: Comprehensive mocking for external dependencies
+
 ## 📁 Project Structure
 
 ```
@@ -94,15 +174,29 @@ voice-virtual-assistant/
 │   ├── models/            # MongoDB models
 │   ├── routes/            # API routes
 │   ├── middleware/        # Authentication middleware
+│   ├── tests/             # Server test suite
+│   │   ├── models/        # Database model tests
+│   │   ├── routes/        # API endpoint tests
+│   │   ├── middleware/    # Authentication tests
+│   │   ├── utils/         # Test utilities
+│   │   └── setup.js       # Test configuration
 │   ├── index.js           # Server entry point
 │   └── package.json       # Backend dependencies
 ├── client/                # React frontend
 │   ├── src/
 │   │   ├── components/    # React components
+│   │   │   └── auth/__tests__/  # Authentication component tests
 │   │   ├── contexts/      # React contexts
+│   │   │   └── __tests__/       # Context tests
+│   │   ├── services/      # Service layer
+│   │   │   └── __tests__/       # Service tests
+│   │   ├── __tests__/     # App-level tests
+│   │   ├── setupTests.js  # Client test configuration
 │   │   ├── App.js         # Main app component
 │   │   └── index.js       # React entry point
 │   └── package.json       # Frontend dependencies
+├── TESTING_GUIDE.md       # Comprehensive testing documentation
+├── run-tests.sh           # Test runner script
 └── package.json           # Root package.json
 ```
 
@@ -230,21 +324,50 @@ npm start
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+4. **Add tests for new functionality**
+5. **Ensure all tests pass** (`npm run test:server` and `npm run test:client`)
+6. Commit your changes (`git commit -m 'Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Submit a pull request
+
+### Testing Guidelines
+
+- **New Features**: Add tests for all new functionality
+- **Bug Fixes**: Add tests to prevent regression
+- **Test Coverage**: Aim for at least 80% coverage
+- **Test Quality**: Write meaningful, descriptive test names
+- **Mocking**: Mock external dependencies appropriately
+
+### Running Tests Before Contributing
+
+```bash
+# Run all tests to ensure everything works
+./run-tests.sh
+
+# Or run tests individually
+npm run test:server
+npm run test:client
+```
 
 ## 📝 License
 
 This project is licensed under the MIT License.
 
+## 📚 Documentation
+
+- **[TESTING_GUIDE.md](./TESTING_GUIDE.md)**: Comprehensive testing documentation
+- **Code Comments**: Inline documentation throughout the codebase
+- **API Documentation**: See the API Endpoints section below
+
 ## 🆘 Support
 
 For support and questions:
 - Create an issue in the repository
-- Check the documentation
-- Review the code comments
+- Check the [TESTING_GUIDE.md](./TESTING_GUIDE.md) for testing help
+- Review the code comments and documentation
+- Check existing issues for similar problems
 
 ## 🔮 Future Enhancements
 
