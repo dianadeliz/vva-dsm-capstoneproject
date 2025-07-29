@@ -32,7 +32,8 @@ This document provides a comprehensive overview of all the functionalities avail
 
 **Screenshot:**
 ```
-[SCREENSHOT: Login Page]
+<img width="1307" height="841" alt="VVA-login" src="https://github.com/user-attachments/assets/6716c8a1-182e-4d31-8ad2-326e69b0ad88" />
+
 ```
 
 ### Sign Up / Registration
@@ -47,7 +48,8 @@ This document provides a comprehensive overview of all the functionalities avail
 
 **Screenshot:**
 ```
-[SCREENSHOT: Registration Page]
+<img width="1303" height="861" alt="VVA-signup" src="https://github.com/user-attachments/assets/65e38c5b-7ca7-4f10-9b4a-8a7e5ee0c8db" />
+
 ```
 
 ### Forgot Password
@@ -62,7 +64,8 @@ This document provides a comprehensive overview of all the functionalities avail
 
 **Screenshot:**
 ```
-[SCREENSHOT: Forgot Password Page]
+<img width="1307" height="846" alt="VVA-forgotPassword" src="https://github.com/user-attachments/assets/c99dbc34-ef9f-4b6f-9e6b-c37bfbb69264" />
+
 ```
 
 ### Reset Password
@@ -95,7 +98,8 @@ This document provides a comprehensive overview of all the functionalities avail
 
 **Screenshot:**
 ```
-[SCREENSHOT: Dashboard Overview]
+<img width="1302" height="848" alt="VVA-dashboard" src="https://github.com/user-attachments/assets/a7de98e8-425b-4053-9754-4d8c032b25f0" />
+
 ```
 
 ---
@@ -105,16 +109,12 @@ This document provides a comprehensive overview of all the functionalities avail
 **Description:** Comprehensive weather display with current conditions and forecasts.
 
 **Features:**
-- Current temperature and conditions
-- Weather icons and descriptions
-- Humidity and wind information
-- Multi-day forecast
-- Location-based weather data
-- Real-time updates
+- Opens a new Google Search of Weather in '...'
 
 **Screenshot:**
 ```
-[SCREENSHOT: Weather Information Page]
+<img width="1307" height="851" alt="VVA-weather" src="https://github.com/user-attachments/assets/52836842-1303-4b5c-9066-4e993507a939" />
+
 ```
 
 ---
@@ -124,17 +124,19 @@ This document provides a comprehensive overview of all the functionalities avail
 **Description:** GPS-based navigation with voice guidance and route optimization.
 
 **Features:**
+- Opens a Google Maps Page showing:
 - Destination input and search
 - Route calculation and display
 - Turn-by-turn directions
 - Voice navigation commands
 - Traffic information
 - Alternative route suggestions
-- Map integration
+
 
 **Screenshot:**
 ```
-[SCREENSHOT: Navigation System]
+<img width="1311" height="852" alt="VVA-navigation" src="https://github.com/user-attachments/assets/a57033f0-aa6e-4f38-8a47-f44208f3479f" />
+
 ```
 
 ---
@@ -144,16 +146,16 @@ This document provides a comprehensive overview of all the functionalities avail
 **Description:** Specialized weather feature focusing on precipitation probability and timing.
 
 **Features:**
+- Opens a Google Website showing:
 - Hourly rain probability
 - Precipitation intensity forecast
 - Time-based rain predictions
 - Visual rain indicators
-- Weather radar integration
-- Rain alerts and notifications
 
 **Screenshot:**
 ```
-[SCREENSHOT: Chance of Rain Feature]
+<img width="1307" height="848" alt="VVA-chanceofRain" src="https://github.com/user-attachments/assets/ff71a1c2-71c7-4715-aeb5-f3588effd559" />
+
 ```
 
 ---
@@ -173,7 +175,13 @@ This document provides a comprehensive overview of all the functionalities avail
 
 **Screenshot:**
 ```
-[SCREENSHOT: Translation Services]
+<img width="1315" height="855" alt="VVA-translation" src="https://github.com/user-attachments/assets/edf6b776-c245-4f18-9d59-637eed1a2b17" />
+
+<br>
+<br>
+
+<img width="1307" height="842" alt="VVA-translationpopup" src="https://github.com/user-attachments/assets/78294672-75c7-4666-92da-153b8dffc52f" />
+
 ```
 
 ---
@@ -187,14 +195,12 @@ This document provides a comprehensive overview of all the functionalities avail
 - Voice-to-text input
 - Text-to-speech output
 - AI-powered responses
-- Chat history
-- Message search
 - Voice commands for chat actions
-- Multi-language chat support
 
 **Screenshot:**
 ```
-[SCREENSHOT: Chat Interface]
+<img width="1308" height="846" alt="VVA-chatconvers" src="https://github.com/user-attachments/assets/28b5fd00-9264-4aa8-aca2-b4fa53c0a3a4" />
+
 ```
 
 ---
@@ -214,67 +220,8 @@ This document provides a comprehensive overview of all the functionalities avail
 
 **Screenshot:**
 ```
-[SCREENSHOT: Air Quality Monitoring]
-```
+<img width="1308" height="850" alt="VVA-airQuality" src="https://github.com/user-attachments/assets/b7e19257-8d41-432a-90a1-f1d87bf4079d" />
 
----
-
-## Voice Assistant
-
-**Description:** AI-powered voice assistant for hands-free interaction with the application.
-
-**Features:**
-- Voice command recognition
-- Natural language processing
-- Task automation
-- Voice feedback
-- Customizable wake words
-- Multi-language voice support
-- Integration with all app features
-
-**Screenshot:**
-```
-[SCREENSHOT: Voice Assistant]
-```
-
----
-
-## Voice Settings
-
-**Description:** Configuration panel for voice assistant and speech recognition settings.
-
-**Features:**
-- Voice speed adjustment
-- Language selection for voice
-- Voice type selection
-- Microphone sensitivity settings
-- Wake word customization
-- Voice feedback preferences
-- Speech recognition accuracy settings
-
-**Screenshot:**
-```
-[SCREENSHOT: Voice Settings]
-```
-
----
-
-## Voice Test
-
-**Description:** Testing interface for voice recognition and speech synthesis capabilities.
-
-**Features:**
-- Voice recognition testing
-- Speech synthesis testing
-- Audio input/output testing
-- Voice quality assessment
-- Microphone calibration
-- Speech accuracy metrics
-- Troubleshooting tools
-
-**Screenshot:**
-```
-[SCREENSHOT: Voice Test Interface]
 ```
 
 ---
@@ -295,13 +242,12 @@ This document provides a comprehensive overview of all the functionalities avail
 - JWT authentication
 - Weather APIs
 - Translation APIs
+- OpenRouter API
 
 ### Key Features
 - Responsive design for all screen sizes
 - Voice-first interaction
-- Real-time data updates
 - Offline functionality where possible
-- Multi-language support
 - Accessibility features
 
 ---
