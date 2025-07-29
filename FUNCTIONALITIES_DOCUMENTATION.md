@@ -1,6 +1,6 @@
 # VVA-DSM Application Functionalities Documentation
 
-This document provides a comprehensive overview of all the functionalities available in the VVA-DSM (Voice, Vision, and Audio - Digital Smart Mirror) application. Each section includes a description of the feature and a placeholder for screenshots.
+This document provides a comprehensive overview of all the functionalities available in the VVA-DSM (Voice Virtual Assistant) application. Each section includes a description of the feature and a placeholder for screenshots.
 
 ## Table of Contents
 
