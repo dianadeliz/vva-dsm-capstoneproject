@@ -63,27 +63,11 @@ This document provides a comprehensive overview of all the functionalities avail
 - Link back to login page
 
 **Screenshot:**
-```
-<img width="1307" height="846" alt="VVA-forgotPassword" src="https://github.com/user-attachments/assets/c99dbc34-ef9f-4b6f-9e6b-c37bfbb69264" />
 
-```
+<img width="1307" height="846" alt="VVA-forgotPassword" src="https://github.com/user-attachments/assets/c99dbc34-ef9f-4b6f-9e6b-c37bfbb69264" />
 
 ### Reset Password
 **Description:** Password reset functionality for users with valid reset tokens.
-
-**Features:**
-- New password and confirm password fields
-- Password strength requirements
-- Token validation
-- Success/error feedback
-- Automatic redirect after successful reset
-
-**Screenshot:**
-```
-[SCREENSHOT: Reset Password Page]
-```
-
----
 
 ## Dashboard Overview
 
@@ -97,10 +81,8 @@ This document provides a comprehensive overview of all the functionalities avail
 - Real-time updates
 
 **Screenshot:**
-```
-<img width="1302" height="848" alt="VVA-dashboard" src="https://github.com/user-attachments/assets/a7de98e8-425b-4053-9754-4d8c032b25f0" />
 
-```
+<img width="1302" height="848" alt="VVA-dashboard" src="https://github.com/user-attachments/assets/a7de98e8-425b-4053-9754-4d8c032b25f0" />
 
 ---
 
@@ -112,10 +94,8 @@ This document provides a comprehensive overview of all the functionalities avail
 - Opens a new Google Search of Weather in '...'
 
 **Screenshot:**
-```
-<img width="1307" height="851" alt="VVA-weather" src="https://github.com/user-attachments/assets/52836842-1303-4b5c-9066-4e993507a939" />
 
-```
+<img width="1307" height="851" alt="VVA-weather" src="https://github.com/user-attachments/assets/52836842-1303-4b5c-9066-4e993507a939" />
 
 ---
 
@@ -134,10 +114,9 @@ This document provides a comprehensive overview of all the functionalities avail
 
 
 **Screenshot:**
-```
+
 <img width="1311" height="852" alt="VVA-navigation" src="https://github.com/user-attachments/assets/a57033f0-aa6e-4f38-8a47-f44208f3479f" />
 
-```
 
 ---
 
@@ -153,10 +132,9 @@ This document provides a comprehensive overview of all the functionalities avail
 - Visual rain indicators
 
 **Screenshot:**
-```
+
 <img width="1307" height="848" alt="VVA-chanceofRain" src="https://github.com/user-attachments/assets/ff71a1c2-71c7-4715-aeb5-f3588effd559" />
 
-```
 
 ---
 
@@ -173,8 +151,8 @@ This document provides a comprehensive overview of all the functionalities avail
 - Offline translation support
 - Pronunciation guides
 
-**Screenshot:**
-```
+**Screenshots:**
+
 <img width="1315" height="855" alt="VVA-translation" src="https://github.com/user-attachments/assets/edf6b776-c245-4f18-9d59-637eed1a2b17" />
 
 <br>
@@ -182,7 +160,6 @@ This document provides a comprehensive overview of all the functionalities avail
 
 <img width="1307" height="842" alt="VVA-translationpopup" src="https://github.com/user-attachments/assets/78294672-75c7-4666-92da-153b8dffc52f" />
 
-```
 
 ---
 
@@ -198,10 +175,9 @@ This document provides a comprehensive overview of all the functionalities avail
 - Voice commands for chat actions
 
 **Screenshot:**
-```
+
 <img width="1308" height="846" alt="VVA-chatconvers" src="https://github.com/user-attachments/assets/28b5fd00-9264-4aa8-aca2-b4fa53c0a3a4" />
 
-```
 
 ---
 
@@ -219,10 +195,8 @@ This document provides a comprehensive overview of all the functionalities avail
 - Visual air quality indicators
 
 **Screenshot:**
-```
-<img width="1308" height="850" alt="VVA-airQuality" src="https://github.com/user-attachments/assets/b7e19257-8d41-432a-90a1-f1d87bf4079d" />
 
-```
+<img width="1308" height="850" alt="VVA-airQuality" src="https://github.com/user-attachments/assets/b7e19257-8d41-432a-90a1-f1d87bf4079d" />
 
 ---
 
