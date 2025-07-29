@@ -31,10 +31,9 @@ This document provides a comprehensive overview of all the functionalities avail
 - Responsive design for different screen sizes
 
 **Screenshot:**
-```
+
 <img width="1307" height="841" alt="VVA-login" src="https://github.com/user-attachments/assets/6716c8a1-182e-4d31-8ad2-326e69b0ad88" />
 
-```
 
 ### Sign Up / Registration
 **Description:** New user registration with comprehensive form validation.
@@ -47,10 +46,10 @@ This document provides a comprehensive overview of all the functionalities avail
 - Link to existing user login
 
 **Screenshot:**
-```
+
 <img width="1303" height="861" alt="VVA-signup" src="https://github.com/user-attachments/assets/65e38c5b-7ca7-4f10-9b4a-8a7e5ee0c8db" />
 
-```
+
 
 ### Forgot Password
 **Description:** Password recovery system for users who have forgotten their credentials.
